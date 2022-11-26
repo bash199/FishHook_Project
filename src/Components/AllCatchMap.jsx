@@ -1,14 +1,18 @@
 import "./app.css";
 import MarkerImg from "../Components/pages/marker.png";
 import ReactMap, {Marker} from "react-map-gl";
-import {useContext, useState, createContext} from "react";
+import {useState, createContext, useEffect} from "react";
 import "./app.css";
-import {ctx} from "./App";
 import styled from "styled-components";
 import CustomPopup from "./CustomPopup";
-
+import {useFetch} from "../hooks/UseFetch";
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
+const MapDiv = styled.div`
+   width: calc(100% - 20px);
+   height: 90vh;
+   margin: 10px;
+`;
 const Img = styled.img`
    width: 25px;
    height: 25px;
@@ -26,9 +30,9 @@ const InfoViewPort = styled.pre`
    text-align: center;
    color: #222;
 `;
+
 export const popupCtx = createContext();
-const AllCatchMap = () => {
-   const listOfMarkers = useContext(ctx);
+const AllCatchMap = ({listOfMarkers}) => {
    const [viewport, setViewport] = useState({
       latitude: 32.944556777342385,
       longitude: 35.183476025375484,
@@ -36,10 +40,23 @@ const AllCatchMap = () => {
    });
    const [selectedCatch, setSelectedCatch] = useState(null);
    const [currentViewport, setCurrentViewport] = useState({lat: "", lng: ""});
+   useEffect(() => {
+      const listener = (e) => {
+         if (e.key === "Escape") {
+            setSelectedCatch(null);
+         }
+      };
+      window.addEventListener("keydown", listener);
+      //cleanup event listener on unmount
+      return () => {
+         window.removeEventListener("keydown", listener);
+      };
+   }, []);
 
    return (
-      <div className="allChatchesMap">
+      <MapDiv className="allChatchesMap">
          <ReactMap
+            style={{borderRadius: "10px"}}
             initialViewState={viewport}
             mapboxAccessToken={ReactMap.mapboxAccessToken}
             onMove={(viewport) => {
@@ -55,8 +72,8 @@ const AllCatchMap = () => {
                   return (
                      <Marker
                         key={spot.id}
-                        latitude={spot.latitude}
-                        longitude={spot.longitude}
+                        latitude={spot.lat}
+                        longitude={spot.lng}
                      >
                         <Img
                            src={MarkerImg}
@@ -73,7 +90,7 @@ const AllCatchMap = () => {
                {selectedCatch && <CustomPopup />}
             </popupCtx.Provider>
          </ReactMap>
-      </div>
+      </MapDiv>
    );
 };
 

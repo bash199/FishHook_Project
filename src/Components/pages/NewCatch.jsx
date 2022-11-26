@@ -1,9 +1,10 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import MarkerImg from "./marker.png";
 import ReactMap, {Marker} from "react-map-gl";
-import {useFetch} from "../../hooks/UseFetch";
+import {useCRUD} from "../../hooks/UseCRUD";
+import axios from "axios";
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
 const NewCatchContainer = styled.div`
@@ -70,9 +71,9 @@ const Input = styled.input`
       border-radius: 1rem;
       border-color: #7ac6b9;
    }
-
 `;
 const NewCatch = () => {
+   const navigate = useNavigate();
    const [marker, setMarker] = useState({
       lat: 33.01305774552368,
       lng: 35.08856616177496,
@@ -82,19 +83,23 @@ const NewCatch = () => {
       longitude: 35.183476025375484,
       zoom: 10,
    });
-   const [state, setState] = useState({
+   const [currCatch, setState] = useState({
       title: "",
       description: "",
       fish: "",
       locationName: "",
-      lat: undefined,
-      lng: undefined,
+      lat: 33.01305774552368,
+      lng: 35.08856616177496,
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Fish_icon.svg/1200px-Fish_icon.svg.png",
    });
-   const [fishState, isLoading, error, create] = useFetch();
+   const [direct, setRedirect] = useState(false);
+   const {create, state, error, isLoading} = useCRUD();
    const handleFormSubmit = (event) => {
       event.preventDefault();
-      // create(state)
+      create(currCatch);
+      setTimeout(() => {
+         setRedirect(true);
+      }, 500);
    };
    const handleInputChange = (event) => {
       setState((prev) => {
@@ -102,6 +107,12 @@ const NewCatch = () => {
       });
    };
 
+   if (direct) {
+      return navigate("/allcatches");
+   }
+   // useEffect(()=>{
+
+   // }.[])
    return (
       <NewCatchContainer>
          <Form onSubmit={handleFormSubmit}>
@@ -110,7 +121,8 @@ const NewCatch = () => {
                <Label htmlFor="titleInput">Title</Label>
                <small>required</small>
                <Input
-               value={state.title}
+                  value={currCatch.title}
+                  minLength={1}
                   id="titleInput"
                   name="title"
                   type="text"
@@ -121,7 +133,7 @@ const NewCatch = () => {
                <Label htmlFor="descInput">Description</Label>
                <small>short description about your catch!</small>
                <Input
-               value={state.description}
+                  value={currCatch.description}
                   id="descInput"
                   name="description"
                   type="text"
@@ -131,7 +143,7 @@ const NewCatch = () => {
             <InputDiv>
                <Label htmlFor="fishInput">Fish Caught:</Label>
                <Input
-               value={state.fish}
+                  value={currCatch.fish}
                   id="fishInput"
                   name="fish"
                   type="text"
@@ -172,7 +184,7 @@ const NewCatch = () => {
                <InputDiv2>
                   <Label htmlFor="locationInput">Where Was Your Catch?</Label>
                   <Input
-                  value={state.fish}
+                     value={currCatch.locationName}
                      id="locationInput"
                      name="locationName"
                      type="text"
@@ -182,7 +194,8 @@ const NewCatch = () => {
                <InputDiv2>
                   <Label htmlFor="latInput">Latitude</Label>
                   <Input
-                     id="latInput" 
+                     value={currCatch.lat}
+                     id="latInput"
                      name="lat"
                      type="number"
                      onChange={handleInputChange}
@@ -191,6 +204,7 @@ const NewCatch = () => {
                <InputDiv2>
                   <Label htmlFor="lngInput">Longitude</Label>
                   <Input
+                     value={currCatch.lng}
                      id="lngInput"
                      name="lng"
                      type="number"
@@ -198,11 +212,19 @@ const NewCatch = () => {
                   />
                </InputDiv2>
             </InputRowDiv>
-            <Link to={"/allcatches"}>
-               <button type="submit" className="btn btn-primary">
-                  Submit Post
-               </button>
-            </Link>
+            <InputDiv>
+               <Label htmlFor="imageInput">Submit a picture!</Label>
+               <Input
+                  value={currCatch.image}
+                  id="imageInput"
+                  name="image"
+                  type="text"
+                  onChange={handleInputChange}
+               />
+            </InputDiv>
+            <button type="submit" className="btn btn-primary">
+               Submit Post
+            </button>
          </Form>
       </NewCatchContainer>
    );

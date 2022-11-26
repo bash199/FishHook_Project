@@ -1,7 +1,8 @@
 import {useContext} from "react";
 import {Popup} from "react-map-gl";
+import {Link} from "react-router-dom";
 import {popupCtx} from "./AllCatchMap";
-import { PopUpDiv,PopUpImage } from "./UI/CustomPopupUI";
+import {PopUpDiv, PopUpImage} from "./UI/CustomPopupUI";
 
 const CustomPopup = () => {
    const {selectedCatch, setSelectedCatch} = useContext(popupCtx);
@@ -10,33 +11,25 @@ const CustomPopup = () => {
    };
    return (
       <Popup
-         latitude={selectedCatch.latitude}
-         longitude={selectedCatch.longitude}
+         latitude={selectedCatch.lat}
+         longitude={selectedCatch.lng}
          onClose={closePop}
          closeButton={true}
          closeOnClick={false}
       >
-         <PopUpDiv >
+         <PopUpDiv style={{padding: "0px"}}>
             <PopUpImage
-               src={selectedCatch.iamge}
+               src={selectedCatch.image}
                className="popupPost-img"
                alt={selectedCatch.title}
             />
-
             <section className="markerPopup-info">
-               <h5>
-                  <strong>{selectedCatch.title}</strong>
-               </h5>
+               <h5>{selectedCatch.title}</h5>
                {/* <p className="popupPost-user">
                   <em>Posted By: {selectedCatch.user.username}</em>
                </p> */}
                {/* {displayCatchLocation()} */}
-               {/* <Link
-                  className="btn btn-primary popupBtn"
-                  to={`/posts/${selectedCatch._id}`}
-               >
-                  Read More
-               </Link> */}
+               <Link to={`/allcatches/${selectedCatch.id}`}>Read More</Link>
             </section>
          </PopUpDiv>
       </Popup>

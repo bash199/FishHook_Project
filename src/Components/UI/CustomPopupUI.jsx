@@ -6,8 +6,8 @@ const PopUpDiv = styled.div`
    cursor: default;
 `;
 const PopUpImage = styled.img`
-   width: 100%;
-   /* max-height: 165px; */
+   width: 220px;
+   height: 165px;
    /* padding: 5px 0; */
    /* margin: 10px 0; */
    /* margin-bottom: 0.5rem; */

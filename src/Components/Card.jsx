@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 const CardDiv = styled.div`
    width: 400px;
@@ -24,14 +25,16 @@ const H4 = styled.h4`
    margin-top: 5px;
 `;
 
-const Card = ({fish: {iamge, title}}) => {
+const Card = ({fish: {image, title,id}}) => {
    return (
       <CardDiv>
          <IamgeDiv>
-            <Iamge src={iamge} alt={title} />
+            <Iamge src={image} alt={title} />
          </IamgeDiv>
          <AboutDiv>
+            <Link to={`/allcatches/${id}`}>
             <H4>{title}</H4>
+            </Link>
          </AboutDiv>
       </CardDiv>
    );

@@ -5,24 +5,20 @@ const useFetch = () => {
    const [state, setState] = useState(null);
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState(null);
-   useEffect(() => {
-      const getData = async () => {
-         setIsLoading(true);
-         try {
-            const {data} = await axios.get(baseUrl);
-            setState(data);
-         } catch (err) {
-            console.log(err);
-            setError(err);
-         }
-         setIsLoading(false);
-      };
-      getData();
-   }, []);
-   const create = async (obj) => {
-      const {data} = await axios.post(baseUrl, obj);
-      setState(data);
+
+   const readData = async () => {
+      setIsLoading(true);
+      try {
+         const {data} = await axios.get(baseUrl);
+         setState(data);
+      } catch (err) {
+         console.log(err);
+         setError(err);
+      }
+      setIsLoading(false);
    };
-   return [state, isLoading, error, create];
+
+   return [readData, state, isLoading, error];
 };
+
 export {useFetch};
