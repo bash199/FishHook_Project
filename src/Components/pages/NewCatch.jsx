@@ -1,8 +1,9 @@
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import MarkerImg from "./marker.png";
 import ReactMap, {Marker} from "react-map-gl";
+import {useFetch} from "../../hooks/UseFetch";
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
 const NewCatchContainer = styled.div`
@@ -26,9 +27,18 @@ const InputDiv = styled.div`
       margin-bottom: 3px;
    }
 `;
+const InputDiv2 = styled.div`
+   width: 25%;
+   margin: 1rem;
+   display: flex;
+   flex-direction: column;
+   & > small {
+      margin-bottom: 3px;
+   }
+`;
 const Label = styled.label`
    margin: 1rem 0;
-   font-size: 1.4rem;
+   font-size: 1.2rem;
 `;
 const MapBox = styled.div`
    margin-top: 1rem;
@@ -38,6 +48,29 @@ const MapBox = styled.div`
 const Img = styled.img`
    width: 25px;
    height: 25px;
+`;
+const InputRowDiv = styled.div`
+   width: 100%;
+   display: flex;
+   justify-content: center;
+`;
+const Input = styled.input`
+   line-height: 28px;
+   border: 2px solid transparent;
+   border-bottom-color: #777;
+   padding: 0.2rem 0;
+   outline: none;
+   background-color: transparent;
+   color: #0d0c22;
+   transition: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+   &:focus,
+   :hover {
+      outline: none;
+      padding: 0.2rem 1rem;
+      border-radius: 1rem;
+      border-color: #7ac6b9;
+   }
+
 `;
 const NewCatch = () => {
    const [marker, setMarker] = useState({
@@ -49,7 +82,6 @@ const NewCatch = () => {
       longitude: 35.183476025375484,
       zoom: 10,
    });
-   const navigate = useNavigate();
    const [state, setState] = useState({
       title: "",
       description: "",
@@ -58,20 +90,17 @@ const NewCatch = () => {
       lat: undefined,
       lng: undefined,
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Fish_icon.svg/1200px-Fish_icon.svg.png",
-      redirectToPosts: false,
    });
+   const [fishState, isLoading, error, create] = useFetch();
    const handleFormSubmit = (event) => {
       event.preventDefault();
-
-      setState({redirectToPosts: true});
+      // create(state)
    };
    const handleInputChange = (event) => {
-      setState({[event.target.name]: event.target.value});
+      setState((prev) => {
+         return {...prev, [event.target.name]: event.target.value};
+      });
    };
-
-   if (state.redirectToPosts) {
-      return navigate("/allcatches");
-   }
 
    return (
       <NewCatchContainer>
@@ -80,16 +109,34 @@ const NewCatch = () => {
             <InputDiv>
                <Label htmlFor="titleInput">Title</Label>
                <small>required</small>
-               <input id="titleInput" name="title" type="text" />
+               <Input
+               value={state.title}
+                  id="titleInput"
+                  name="title"
+                  type="text"
+                  onChange={handleInputChange}
+               />
             </InputDiv>
             <InputDiv>
                <Label htmlFor="descInput">Description</Label>
                <small>short description about your catch!</small>
-               <input id="descInput" name="description" type="text" />
+               <Input
+               value={state.description}
+                  id="descInput"
+                  name="description"
+                  type="text"
+                  onChange={handleInputChange}
+               />
             </InputDiv>
             <InputDiv>
                <Label htmlFor="fishInput">Fish Caught:</Label>
-               <input id="fishInput" name="fish" type="text" />
+               <Input
+               value={state.fish}
+                  id="fishInput"
+                  name="fish"
+                  type="text"
+                  onChange={handleInputChange}
+               />
             </InputDiv>
             <MapBox>
                <ReactMap
@@ -106,6 +153,13 @@ const NewCatch = () => {
                      onDragEnd={(view) => {
                         console.log(view.lngLat);
                         setMarker(view.lngLat);
+                        setState((prevState) => {
+                           return {
+                              ...prevState,
+                              lat: view.lngLat.lat,
+                              lng: view.lngLat.lng,
+                           };
+                        });
                      }}
                      latitude={marker.lat}
                      longitude={marker.lng}
@@ -114,9 +168,41 @@ const NewCatch = () => {
                   </Marker>
                </ReactMap>
             </MapBox>
-            {/* <button type="submit" className="btn btn-primary">
+            <InputRowDiv>
+               <InputDiv2>
+                  <Label htmlFor="locationInput">Where Was Your Catch?</Label>
+                  <Input
+                  value={state.fish}
+                     id="locationInput"
+                     name="locationName"
+                     type="text"
+                     onChange={handleInputChange}
+                  />
+               </InputDiv2>
+               <InputDiv2>
+                  <Label htmlFor="latInput">Latitude</Label>
+                  <Input
+                     id="latInput" 
+                     name="lat"
+                     type="number"
+                     onChange={handleInputChange}
+                  />
+               </InputDiv2>
+               <InputDiv2>
+                  <Label htmlFor="lngInput">Longitude</Label>
+                  <Input
+                     id="lngInput"
+                     name="lng"
+                     type="number"
+                     onChange={handleInputChange}
+                  />
+               </InputDiv2>
+            </InputRowDiv>
+            <Link to={"/allcatches"}>
+               <button type="submit" className="btn btn-primary">
                   Submit Post
-               </button> */}
+               </button>
+            </Link>
          </Form>
       </NewCatchContainer>
    );
