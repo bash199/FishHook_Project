@@ -1,6 +1,8 @@
 import {useContext} from "react";
 import {Popup} from "react-map-gl";
 import {popupCtx} from "./AllCatchMap";
+import { PopUpDiv,PopUpImage } from "./UI/CustomPopupUI";
+
 const CustomPopup = () => {
    const {selectedCatch, setSelectedCatch} = useContext(popupCtx);
    const closePop = () => {
@@ -14,9 +16,8 @@ const CustomPopup = () => {
          closeButton={true}
          closeOnClick={false}
       >
-         <p>{selectedCatch.title}</p>
-         <div className="markerPopup">
-            <img
+         <PopUpDiv >
+            <PopUpImage
                src={selectedCatch.iamge}
                className="popupPost-img"
                alt={selectedCatch.title}
@@ -37,7 +38,7 @@ const CustomPopup = () => {
                   Read More
                </Link> */}
             </section>
-         </div>
+         </PopUpDiv>
       </Popup>
    );
 };
