@@ -7,6 +7,7 @@ const Catch = () => {
    const {readById, deleteCatch, state, error, isLoading} = useCRUD();
    useEffect(() => {
       readById(catchId);
+      // eslint-disable-next-line
    }, []);
    const handleDeleteClick = () => {
       deleteCatch(state.id);

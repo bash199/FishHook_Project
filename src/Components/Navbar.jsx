@@ -9,12 +9,12 @@ const Nav = styled.nav`
    margin-bottom: 10px;
    background-color: aqua;
 `;
-const LogoDiv = styled.ul`
-   margin: 0 10px;
-`;
-const LinksDiv = styled.div`
-   margin: 0 10px;
-`;
+// const LogoDiv = styled.ul`
+//    margin: 0 10px;
+// `;
+// const LinksDiv = styled.div`
+//    margin: 0 10px;
+// `;
 const Ul = styled.ul`
    padding: 0 10px;
    width: 100%;
