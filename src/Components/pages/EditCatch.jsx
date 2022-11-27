@@ -30,7 +30,8 @@ const EditCatch = () => {
    const navigate = useNavigate();
    useEffect(() => {
       readById(catchId);
-   }, [catchId,readById]);
+      // eslint-disable-next-line
+   }, []);
    const handleFormSubmit = (event) => {
       event.preventDefault();
       update(state);
@@ -45,7 +46,7 @@ const EditCatch = () => {
    };
 
    if (direct) {
-      return navigate(`/allcatches/${catchId}`);
+      return navigate('/allcatches');
    }
 
    return (
@@ -106,7 +107,7 @@ const EditCatch = () => {
                      onMove={(viewport) => {
                         setViewport(viewport);
                      }}
-                     mapStyle="mapbox://styles/mapbox/outdoors-v12"
+                     mapStyle="mapbox://styles/mapbox/outdoors-v12?optimize=true"
                   >
                      <Marker
                         draggable={true}

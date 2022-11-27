@@ -55,16 +55,16 @@ const AllCatchMap = ({listOfMarkers}) => {
    return (
       <MapDiv className="allChatchesMap">
          <ReactMap
+            mapboxAccessToken={ReactMap.mapboxAccessToken}
+            mapStyle="mapbox://styles/mapbox/outdoors-v12?optimize=true"
             style={{borderRadius: "10px"}}
             initialViewState={viewport}
-            mapboxAccessToken={ReactMap.mapboxAccessToken}
             onMove={(viewport) => {
                setViewport(viewport);
             }}
             onMouseMove={(e) => {
                setCurrentViewport({lat: e.lngLat.lat, lng: e.lngLat.lng});
             }}
-            mapStyle="mapbox://styles/mapbox/outdoors-v12"
          >
             {listOfMarkers &&
                listOfMarkers.map((spot, i) => {
