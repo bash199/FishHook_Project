@@ -5,7 +5,7 @@ import {useState, createContext, useEffect} from "react";
 import "./app.css";
 import styled from "styled-components";
 import CustomPopup from "./CustomPopup";
-import {useFetch} from "../hooks/UseFetch";
+// import {useFetch} from "../hooks/UseFetch";
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
 const MapDiv = styled.div`
@@ -59,6 +59,7 @@ const AllCatchMap = ({listOfMarkers}) => {
             style={{borderRadius: "10px"}}
             initialViewState={viewport}
             mapboxAccessToken={ReactMap.mapboxAccessToken}
+            // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             onMove={(viewport) => {
                setViewport(viewport);
             }}

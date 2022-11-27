@@ -17,7 +17,9 @@ const useFetch = () => {
       }
       setIsLoading(false);
    };
-
+   useEffect(() => {
+      readData();
+   }, []);
    return [readData, state, isLoading, error];
 };
 

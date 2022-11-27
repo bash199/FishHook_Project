@@ -1,26 +1,27 @@
-import React, {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import styled from "styled-components";
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import MarkerImg from "./marker.png";
 import ReactMap, {Marker} from "react-map-gl";
 import {useCRUD} from "../../hooks/UseCRUD";
-import axios from "axios";
+import styled from 'styled-components'
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
-const NewCatchContainer = styled.div`
+
+export const NewCatchContainer = styled.div`
+   height: 100%;
    display: flex;
    justify-content: center;
    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
-const Form = styled.form`
+export const Form = styled.form`
    width: calc(100% - 20px);
-   height: 100vh;
+   height: 100%;
    display: flex;
    flex-direction: column;
    align-items: center;
 `;
-const InputDiv = styled.div`
+export const InputDiv = styled.div`
    width: 90%;
    display: flex;
    flex-direction: column;
@@ -28,7 +29,7 @@ const InputDiv = styled.div`
       margin-bottom: 3px;
    }
 `;
-const InputDiv2 = styled.div`
+export const InputDiv2 = styled.div`
    width: 25%;
    margin: 1rem;
    display: flex;
@@ -37,25 +38,25 @@ const InputDiv2 = styled.div`
       margin-bottom: 3px;
    }
 `;
-const Label = styled.label`
+export const Label = styled.label`
    margin: 1rem 0;
    font-size: 1.2rem;
 `;
-const MapBox = styled.div`
+export const MapBox = styled.div`
    margin-top: 1rem;
    width: 90%;
    height: 50vh;
 `;
-const Img = styled.img`
+export const Img = styled.img`
    width: 25px;
    height: 25px;
 `;
-const InputRowDiv = styled.div`
+export const InputRowDiv = styled.div`
    width: 100%;
    display: flex;
    justify-content: center;
 `;
-const Input = styled.input`
+export const Input = styled.input`
    line-height: 28px;
    border: 2px solid transparent;
    border-bottom-color: #777;
@@ -72,6 +73,7 @@ const Input = styled.input`
       border-color: #7ac6b9;
    }
 `;
+
 const NewCatch = () => {
    const navigate = useNavigate();
    const [marker, setMarker] = useState({
@@ -88,18 +90,19 @@ const NewCatch = () => {
       description: "",
       fish: "",
       locationName: "",
+      weight: "",
       lat: 33.01305774552368,
       lng: 35.08856616177496,
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Fish_icon.svg/1200px-Fish_icon.svg.png",
    });
    const [direct, setRedirect] = useState(false);
-   const {create, state, error, isLoading} = useCRUD();
+   const {create} = useCRUD();
    const handleFormSubmit = (event) => {
       event.preventDefault();
       create(currCatch);
-      setTimeout(() => {
+      // setTimeout(() => {
          setRedirect(true);
-      }, 500);
+      // }, 500);
    };
    const handleInputChange = (event) => {
       setState((prev) => {
@@ -110,13 +113,10 @@ const NewCatch = () => {
    if (direct) {
       return navigate("/allcatches");
    }
-   // useEffect(()=>{
-
-   // }.[])
    return (
       <NewCatchContainer>
          <Form onSubmit={handleFormSubmit}>
-            <h1>submit a new post!</h1>
+            <h1>Add a new catch!</h1>
             <InputDiv>
                <Label htmlFor="titleInput">Title</Label>
                <small>required</small>
@@ -150,6 +150,18 @@ const NewCatch = () => {
                   onChange={handleInputChange}
                />
             </InputDiv>
+            <InputDiv>
+               <Label htmlFor="weightInput">Fish Weight:</Label>
+               <Input
+                  value={currCatch.weight}
+                  id="weightInput"
+                  name="weight"
+                  type="number"
+                  step={0.1}
+                  onChange={handleInputChange}
+               />
+            </InputDiv>
+            <h2>Drag the pin to get your coordinates!</h2>
             <MapBox>
                <ReactMap
                   style={{borderRadius: "10px"}}
@@ -163,7 +175,6 @@ const NewCatch = () => {
                   <Marker
                      draggable={true}
                      onDragEnd={(view) => {
-                        console.log(view.lngLat);
                         setMarker(view.lngLat);
                         setState((prevState) => {
                            return {
@@ -196,6 +207,7 @@ const NewCatch = () => {
                   <Input
                      value={currCatch.lat}
                      id="latInput"
+                     step={0.1}
                      name="lat"
                      type="number"
                      onChange={handleInputChange}
@@ -206,6 +218,7 @@ const NewCatch = () => {
                   <Input
                      value={currCatch.lng}
                      id="lngInput"
+                     step={0.1}
                      name="lng"
                      type="number"
                      onChange={handleInputChange}

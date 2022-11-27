@@ -46,6 +46,6 @@ const useCRUD = () => {
       }
       setIsLoading(false);
    };
-   return {create, readById, update, deleteCatch, state, error, isLoading};
+   return {create, readById, update, deleteCatch,setState, state, error, isLoading};
 };
 export {useCRUD};

@@ -21,20 +21,20 @@ const CardsBox = styled.div`
 `;
 
 const AllCatches = () => {
-   const [readData, state, isLoading] = useFetch();
+   const [readData, listOfMarkers, isLoading] = useFetch();
    useEffect(() => {
-      setTimeout(() => {
-         readData();
-      }, 500);
+      readData();
+      // eslint-disable-next-line
    }, []);
    return (
       <AllCatchesDiv>
-         {state && <AllCatchMap listOfMarkers={state} />}
-         {state && (
+         {isLoading && <h1>Spinner</h1>}
+         {listOfMarkers && <AllCatchMap listOfMarkers={listOfMarkers} />}
+         {listOfMarkers && (
             <CardsBox>
                <h1>Recent Catches:</h1>
-               {state &&
-                  state
+               {listOfMarkers &&
+                  listOfMarkers
                      .map((fish) => {
                         return <Card key={fish.id} fish={fish}></Card>;
                      })

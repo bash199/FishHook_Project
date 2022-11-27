@@ -1,30 +1,21 @@
-import React, {useEffect, useState} from "react";
-import {Link, useParams, useNavigate} from "react-router-dom";
+import React, {useEffect} from "react";
+import {Link, useParams} from "react-router-dom";
 import {useCRUD} from "../../hooks/UseCRUD";
 
 const Catch = () => {
-   const param = useParams();
+   const {catchId} = useParams();
    const {readById, deleteCatch, state, error, isLoading} = useCRUD();
-   // const [direct, setRedirect] = useState(false);
    useEffect(() => {
-      setTimeout(() => {
-         readById(param.catchId);
-      }, 500);
+      readById(catchId);
    }, []);
    const handleDeleteClick = () => {
       deleteCatch(state.id);
-      // setTimeout(() => {
-      //    setRedirect(true);
-      // }, 500);
    };
-   // const navigate = useNavigate();
-   // if (direct) {
-   //    return navigate("/allcatches");
-   // }
+
    return (
       <div>
-         Catch
-         {!error && (
+         {isLoading && <h1>Spinner</h1>}
+         {!isLoading && (
             <center>
                {state && (
                   <div>
@@ -34,9 +25,13 @@ const Catch = () => {
             </center>
          )}
          {error && <h1>{error.message}</h1>}
-         <Link onClick={handleDeleteClick} to={"/allcatches"}>
-            Delete
-         </Link>
+         {!isLoading && (
+            <Link onClick={handleDeleteClick} to={"/allcatches"}>
+               Delete
+            </Link>
+         )}
+         {!isLoading && <Link to={`/allcatches/${catchId}/edit`}>EDIT</Link>}
+
          {/* <button onClick={handleDeleteClick}>Delete</button> */}
       </div>
    );
