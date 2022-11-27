@@ -9,6 +9,7 @@ ReactMap.mapboxAccessToken =
 
 export const NewCatchContainer = styled.div`
    height: 100%;
+   background-color: #B4C9AF;
    display: flex;
    justify-content: center;
    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -70,7 +71,7 @@ export const Input = styled.input`
       outline: none;
       padding: 0.2rem 1rem;
       border-radius: 1rem;
-      border-color: #7ac6b9;
+      border-color: #33333344;
    }
 `;
 

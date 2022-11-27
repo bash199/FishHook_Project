@@ -52,6 +52,16 @@ const AllCatchMap = ({listOfMarkers}) => {
       };
    }, []);
 
+   const goToMarker = (clickedMarker) => {
+      setViewport({
+          ...viewport,
+          longitude: clickedMarker.lng,
+          latitude: clickedMarker.lat,
+          zoom: 10,
+          tranistionDuration: 5000,
+          transitionInterpolator: new ReactMap.flyTo({ speed: 1.2 }),
+      })
+  }
    return (
       <MapDiv className="allChatchesMap">
          <ReactMap
@@ -70,9 +80,11 @@ const AllCatchMap = ({listOfMarkers}) => {
                listOfMarkers.map((spot, i) => {
                   return (
                      <Marker
+                     style={{cursor:"pointer"}}
                         key={spot.id}
                         latitude={spot.lat}
                         longitude={spot.lng}
+                        // onClick={() => goToMarker(spot)}
                      >
                         <Img
                            src={MarkerImg}

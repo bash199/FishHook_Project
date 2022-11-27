@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import {useCRUD} from "../../hooks/UseCRUD";
+import Spinner from "../Spinner";
 
 const Catch = () => {
    const {catchId} = useParams();
@@ -15,7 +16,7 @@ const Catch = () => {
 
    return (
       <div>
-         {isLoading && <h1>Spinner</h1>}
+         {isLoading && <Spinner/>}
          {!isLoading && (
             <center>
                {state && (

@@ -1,12 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 const CardDiv = styled.div`
-   width: 400px;
+   width: 500px;
    height: 200px;
-   margin: 5px;
+   margin: 10px;
    border: solid black 2px;
    display: flex;
+   background: rgba(255, 255, 255);
+   /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+   /* backdrop-filter: blur(3.5px); */
+   /* -webkit-backdrop-filter: blur(3.5px);  */
+    border-radius: 10px;
+   border: 1px solid rgba(255, 255, 255, 0.18);
 `;
 const IamgeDiv = styled.div`
    width: 40%;
@@ -25,7 +31,7 @@ const H4 = styled.h4`
    margin-top: 5px;
 `;
 
-const Card = ({fish: {image, title,id}}) => {
+const Card = ({fish: {image, title, id}}) => {
    return (
       <CardDiv>
          <IamgeDiv>
@@ -33,7 +39,7 @@ const Card = ({fish: {image, title,id}}) => {
          </IamgeDiv>
          <AboutDiv>
             <Link to={`/allcatches/${id}`}>
-            <H4>{title}</H4>
+               <H4>{title}</H4>
             </Link>
          </AboutDiv>
       </CardDiv>

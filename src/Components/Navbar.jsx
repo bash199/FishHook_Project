@@ -57,11 +57,12 @@ const Navbar = () => {
          <span></span>
          <span></span> 
           {/* <!-- logo --> */}
-         <Link to="/" className="menu-logo">
-            <img
+         <Link to="/" className="menu-logo nav-title">
+            {/* <img
                src="https://img.icons8.com/cute-clipart/64/null/shoes.png"
                alt="img"
-            />
+            /> */}
+            FishHook
          </Link>
          {/* <!-- menu items --> */}
          <div className="menu">

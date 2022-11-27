@@ -3,10 +3,16 @@ import styled from "styled-components";
 import Card from "../Card";
 import {useFetch} from "../../hooks/UseFetch";
 import {useEffect} from "react";
+import Spinner from "../Spinner";
 
 const AllCatchesDiv = styled.div`
    width: 100%;
-   height: 100%;
+   min-height: 100vh;
+   /* background: url('https://fishingpoints.app/sites/default/files/upload/images/hero/fp_hero_desktop_l_1.jpg') ; */
+   background: #B4C9AF;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
    display: flex;
    flex-direction: row;
    @media (max-width: 768px) {
@@ -28,7 +34,7 @@ const AllCatches = () => {
    }, []);
    return (
       <AllCatchesDiv>
-         {isLoading && <h1>Spinner</h1>}
+         {isLoading && <Spinner/>}
          {listOfMarkers && <AllCatchMap listOfMarkers={listOfMarkers} />}
          {listOfMarkers && (
             <CardsBox>

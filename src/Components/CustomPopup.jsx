@@ -22,7 +22,7 @@ const CustomPopup = () => {
       setSelectedCatch(null);
    };
    return (
-      <Popup
+      <Popup style={{cursor: "pointer"}}
          latitude={selectedCatch.lat}
          longitude={selectedCatch.lng}
          onClose={closePop}

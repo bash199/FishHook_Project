@@ -14,6 +14,7 @@ import {
    InputRowDiv,
    Input,
 } from "./NewCatch";
+import Spinner from "../Spinner";
 
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
@@ -46,11 +47,12 @@ const EditCatch = () => {
    };
 
    if (direct) {
-      return navigate('/allcatches');
+      return navigate("/allcatches");
    }
 
    return (
       <NewCatchContainer>
+         {!state && <Spinner />}
          {state && (
             <Form onSubmit={handleFormSubmit}>
                <h1>submit a new post!</h1>
