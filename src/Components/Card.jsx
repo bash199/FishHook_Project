@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+
 const CardDiv = styled.div`
    width: 400px;
    height: 150px;
@@ -8,24 +9,19 @@ const CardDiv = styled.div`
    border: solid black 2px;
    display: flex;
    justify-content: space-between;
-   box-shadow: 0 8px 32px 0 rgba(73, 74, 78, 0.37);
    border-radius: 10px;
    border: 0;
-   background: rgba( 255, 255, 255, 0.25 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 10px );
--webkit-backdrop-filter: blur( 10px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );
-     /* .card-text1{
-    display: block;
-    max-width: 98%;
-    white-space: nowrap;
-    overflow: hidden ;
-    text-overflow: ellipsis;
-} */
-@media (max-width: 768px) {
-   width: 300px;
+   background: rgba(255, 255, 255, 0.25);
+   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   border-radius: 10px;
+   border: 1px solid rgba(255, 255, 255, 0.18);
+   @media (max-width: 768px) {
+      width: 300px;
+   }
+   @media (max-width: 300px) {
+      width: 260px;
    }
 `;
 const IamgeDiv = styled.div`
@@ -61,7 +57,7 @@ const Hr = styled.hr`
    border-bottom: 0;
 `;
 const FishDiv = styled.div`
-   width:90% ;
+   width: 90%;
    height: 30px;
    margin-top: 15px;
    display: flex;
@@ -69,16 +65,15 @@ const FishDiv = styled.div`
    font-weight: 100;
 `;
 const LocationName = styled.div`
-   width:90% ;
+   width: 90%;
    height: 30px;
    margin-top: 0px;
    display: flex;
    justify-content: flex-start;
    font-weight: 100;
 `;
-const Card = ({
-   fish: {image, title, id, description, locationName, fish, weight},
-}) => {
+
+const Card = ({fish: {image, title, id, locationName, fish}}) => {
    return (
       <CardDiv>
          <IamgeDiv>
@@ -89,12 +84,12 @@ const Card = ({
                <H4>{title}</H4>
             </Link>
             <Hr />
-         <FishDiv>
-         <p>Fish caught : {fish}</p>
-         </FishDiv>
-         <LocationName>
-         <p>Caught At: {locationName}</p>
-         </LocationName>
+            <FishDiv>
+               <p>Fish caught : {fish}</p>
+            </FishDiv>
+            <LocationName>
+               <p>Caught At: {locationName}</p>
+            </LocationName>
          </AboutDiv>
       </CardDiv>
    );

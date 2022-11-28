@@ -108,7 +108,6 @@
    .menu-container {
       flex-direction: column;
       align-items: flex-end;
-      /* overflow-x: hidden; */
       overflow-y: visible;
       scrollbar-width: none;
    }

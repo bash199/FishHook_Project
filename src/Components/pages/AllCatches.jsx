@@ -5,7 +5,7 @@ import {useFetch} from "../../hooks/UseFetch";
 import {useEffect} from "react";
 import Spinner from "../Spinner";
 import {Overlay} from "./LandingPage";
-// import Image from './back.jpg'
+
 const AllCatchesDiv = styled.div`
    width: 100%;
    min-height: 100vh;
@@ -32,11 +32,14 @@ const H1 = styled.h1`
 `;
 
 const AllCatches = () => {
+
    const [readData, listOfMarkers, isLoading] = useFetch();
+
    useEffect(() => {
       readData();
       // eslint-disable-next-line
    }, []);
+
    return (
       <AllCatchesDiv>
          <Overlay />

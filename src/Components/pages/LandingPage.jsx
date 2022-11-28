@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 const Div = styled.div`
    background: url("landingback.jpg")
       center center / cover no-repeat;
@@ -7,13 +8,6 @@ const Div = styled.div`
    width: 100%;
    min-height: 100vh;
    position: relative;
-   /* .card-text1{
-    display: block;
-    max-width: 98%;
-    white-space: nowrap;
-    overflow: hidden ;
-    text-overflow: ellipsis;
-} */
 
 `;
 export const Overlay = styled.div`

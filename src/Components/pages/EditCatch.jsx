@@ -3,6 +3,7 @@ import {useParams, useNavigate} from "react-router-dom";
 import ReactMap, {Marker} from "react-map-gl";
 import {useCRUD} from "../../hooks/UseCRUD";
 import MarkerImg from "./marker.png";
+import Spinner from "../Spinner";
 import {
    NewCatchContainer,
    Form,
@@ -14,46 +15,43 @@ import {
    InputRowDiv,
    Input,
    Overlay2,
+   H2,
+   Btn,
 } from "./NewCatch";
-import Spinner from "../Spinner";
 
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
 
 const EditCatch = () => {
+   
    const {catchId} = useParams();
-   const [direct, setRedirect] = useState(false);
+   const navigate = useNavigate();
    const {readById, update, setState, state} = useCRUD();
    const [viewport, setViewport] = useState({
       latitude: 32.944556777342385,
       longitude: 35.183476025375484,
       zoom: 10,
    });
-   const navigate = useNavigate();
-   useEffect(() => {
-      readById(catchId);
-      // eslint-disable-next-line
-   }, []);
+
    const handleFormSubmit = (event) => {
       event.preventDefault();
       update(state);
-      // setTimeout(() => {
-      setRedirect(true);
-      // }, 500);
+      navigate("/allcatches")
    };
    const handleInputChange = (event) => {
       setState((prev) => {
          return {...prev, [event.target.name]: event.target.value};
       });
    };
-
-   if (direct) {
-      return navigate("/allcatches");
-   }
+   
+   useEffect(() => {
+      readById(catchId);
+      // eslint-disable-next-line
+   }, []);
 
    return (
       <NewCatchContainer>
-         <Overlay2/>
+         <Overlay2 />
          {!state && <Spinner />}
          {state && (
             <Form onSubmit={handleFormSubmit}>
@@ -102,7 +100,19 @@ const EditCatch = () => {
                      onChange={handleInputChange}
                   />
                </InputDiv>
-               <h2 style={{marginTop:'10px'}}>Drag the pin to edit your coordinates!</h2>
+               <InputDiv>
+                  <Label htmlFor="caughtByInput">Caught By:</Label>
+                  <Input
+                     value={state.caughtBy}
+                     id="caughtByInput"
+                     name="caughtBy"
+                     type="text"
+                     onChange={handleInputChange}
+                  />
+               </InputDiv>
+               <H2 style={{marginTop: "10px"}}>
+                  Drag the pin to edit your coordinates!
+               </H2>
                <MapBox>
                   <ReactMap
                      style={{borderRadius: "10px"}}
@@ -178,9 +188,9 @@ const EditCatch = () => {
                      onChange={handleInputChange}
                   />
                </InputDiv>
-               <button type="submit" className="btn btn-primary">
+               <Btn type="submit" className="btn btn-primary">
                   Confirm
-               </button>
+               </Btn>
             </Form>
          )}
       </NewCatchContainer>

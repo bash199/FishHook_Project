@@ -33,13 +33,15 @@ const InfoViewPort = styled.pre`
 
 export const popupCtx = createContext();
 const AllCatchMap = ({listOfMarkers}) => {
+   
    const [viewport, setViewport] = useState({
       latitude: 32.944556777342385,
       longitude: 35.183476025375484,
-      zoom: 10,
+      zoom: 8,
    });
    const [selectedCatch, setSelectedCatch] = useState(null);
    const [currentViewport, setCurrentViewport] = useState({lat: "", lng: ""});
+
    useEffect(() => {
       const listener = (e) => {
          if (e.key === "Escape") {
@@ -53,21 +55,10 @@ const AllCatchMap = ({listOfMarkers}) => {
       };
    }, []);
 
-   //    const goToMarker = (clickedMarker) => {
-   //       setViewport({
-   //           ...viewport,
-   //           longitude: clickedMarker.lng,
-   //           latitude: clickedMarker.lat,
-   //           zoom: 10,
-   //           tranistionDuration: 5000,
-   //           transitionInterpolator: new ReactMap.flyTo({ speed: 1.2 }),
-   //       })
-   //   }
    return (
       <MapDiv className="allChatchesMap">
          <ReactMap
             mapboxAccessToken={ReactMap.mapboxAccessToken}
-            // mapStyle="mapbox://styles/mapbox/outdoors-v12?optimize=true"
             mapStyle="mapbox://styles/mapbox/navigation-night-v1"
             style={{borderRadius: "10px"}}
             initialViewState={viewport}
@@ -86,7 +77,6 @@ const AllCatchMap = ({listOfMarkers}) => {
                         key={spot.id}
                         latitude={spot.lat}
                         longitude={spot.lng}
-                        // onClick={() => goToMarker(spot)}
                      >
                         <Img
                            src={MarkerImg}

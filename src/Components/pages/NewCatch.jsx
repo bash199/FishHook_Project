@@ -41,6 +41,9 @@ export const InputDiv2 = styled.div`
    & > small {
       margin-bottom: 3px;
    }
+   @media screen and (max-width: 768px) {
+      width: 90%;
+   }
 `;
 export const Label = styled.label`
    margin: 1rem 0;
@@ -59,6 +62,10 @@ export const InputRowDiv = styled.div`
    width: 100%;
    display: flex;
    justify-content: center;
+   @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+   }
 `;
 export const Input = styled.input`
    line-height: 28px;
@@ -86,7 +93,29 @@ export const Overlay2 = styled.div`
    background-color: rgba(0, 0, 0, 0.4);
    z-index: 0;
 `;
-
+export const H2 = styled.h2`
+   margin: 10px 0 0 0;
+   @media screen and (max-width: 768px) {
+      font-size: 1rem;
+   }
+`;
+export const Btn = styled.button`
+   width: 100px;
+   height: 30px;
+   font-size: 1rem;
+   cursor: pointer;
+   background: rgba(255, 255, 255, 0.05);
+   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+   backdrop-filter: blur(0px);
+   -webkit-backdrop-filter: blur(0);
+   border-radius: 10px;
+   border: 1px solid rgba(255, 255, 255, 0.18);
+   margin: 30px 10px 100px 10px;
+   &:hover{
+      transition: 0.1s ease-in-out;
+      transform: scale(1.05);
+   }
+`;
 
 const NewCatch = () => {
    const navigate = useNavigate();
@@ -110,14 +139,12 @@ const NewCatch = () => {
       lng: 35.08856616177496,
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Fish_icon.svg/1200px-Fish_icon.svg.png",
    });
-   const [direct, setRedirect] = useState(false);
    const {create} = useCRUD();
+
    const handleFormSubmit = (event) => {
       event.preventDefault();
       create(currCatch);
-      // setTimeout(() => {
-      setRedirect(true);
-      // }, 500);
+      navigate("/allcatches");
    };
    const handleInputChange = (event) => {
       setState((prev) => {
@@ -125,14 +152,11 @@ const NewCatch = () => {
       });
    };
 
-   if (direct) {
-      return navigate("/allcatches");
-   }
+
    return (
       <NewCatchContainer>
          <Overlay2 />
          <Form onSubmit={handleFormSubmit}>
-            {/* <h1>Add a new catch!</h1> */}
             <InputDiv>
                <Label htmlFor="titleInput">Title</Label>
                <small>required</small>
@@ -188,9 +212,9 @@ const NewCatch = () => {
                   onChange={handleInputChange}
                />
             </InputDiv>
-            <h2 style={{marginTop: "10px"}}>
+            <H2 style={{marginTop: "10px"}}>
                Drag the pin to get your coordinates...
-            </h2>
+            </H2>
             <MapBox>
                <ReactMap
                   style={{borderRadius: "10px"}}
@@ -199,7 +223,6 @@ const NewCatch = () => {
                   onMove={(viewport) => {
                      setViewport(viewport);
                   }}
-                  // mapStyle="mapbox://styles/mapbox/outdoors-v12"
                   mapStyle="mapbox://styles/mapbox/navigation-night-v1"
                >
                   <Marker
@@ -265,9 +288,9 @@ const NewCatch = () => {
                   onChange={handleInputChange}
                />
             </InputDiv>
-            <button type="submit" className="btn btn-primary">
+            <Btn type="submit" className="btn btn-primary">
                Add Catch
-            </button>
+            </Btn>
          </Form>
       </NewCatchContainer>
    );
