@@ -4,26 +4,31 @@ import Card from "../Card";
 import {useFetch} from "../../hooks/UseFetch";
 import {useEffect} from "react";
 import Spinner from "../Spinner";
-
+import {Overlay} from "./LandingPage";
+// import Image from './back.jpg'
 const AllCatchesDiv = styled.div`
    width: 100%;
    min-height: 100vh;
-   /* background: url('https://fishingpoints.app/sites/default/files/upload/images/hero/fp_hero_desktop_l_1.jpg') ; */
-   background: #B4C9AF;
+   background-image: url("back.jpg");
    background-repeat: no-repeat;
    background-position: center;
    background-size: cover;
+   position: relative;
    display: flex;
    flex-direction: row;
    @media (max-width: 768px) {
       flex-direction: column;
-      /* justify-content: center; */
       align-items: center;
       flex-wrap: wrap;
    }
 `;
 const CardsBox = styled.div`
+   color: white;
    text-align: center;
+`;
+const H1 = styled.h1`
+   margin:10px ;
+   font-weight: 200;
 `;
 
 const AllCatches = () => {
@@ -34,11 +39,12 @@ const AllCatches = () => {
    }, []);
    return (
       <AllCatchesDiv>
-         {isLoading && <Spinner/>}
+         <Overlay />
+         {isLoading && <Spinner />}
          {listOfMarkers && <AllCatchMap listOfMarkers={listOfMarkers} />}
          {listOfMarkers && (
             <CardsBox>
-               <h1>Recent Catches:</h1>
+               <H1>Recent Catches:</H1>
                {listOfMarkers &&
                   listOfMarkers
                      .map((fish) => {

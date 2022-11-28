@@ -13,6 +13,7 @@ import {
    Img,
    InputRowDiv,
    Input,
+   Overlay2,
 } from "./NewCatch";
 import Spinner from "../Spinner";
 
@@ -52,6 +53,7 @@ const EditCatch = () => {
 
    return (
       <NewCatchContainer>
+         <Overlay2/>
          {!state && <Spinner />}
          {state && (
             <Form onSubmit={handleFormSubmit}>
@@ -100,7 +102,7 @@ const EditCatch = () => {
                      onChange={handleInputChange}
                   />
                </InputDiv>
-               <h2>Drag the pin to edit your coordinates!</h2>
+               <h2 style={{marginTop:'10px'}}>Drag the pin to edit your coordinates!</h2>
                <MapBox>
                   <ReactMap
                      style={{borderRadius: "10px"}}
@@ -109,7 +111,8 @@ const EditCatch = () => {
                      onMove={(viewport) => {
                         setViewport(viewport);
                      }}
-                     mapStyle="mapbox://styles/mapbox/outdoors-v12?optimize=true"
+                     // mapStyle="mapbox://styles/mapbox/outdoors-v12?optimize=true"
+                     mapStyle="mapbox://styles/mapbox/navigation-night-v1?optimize=true"
                   >
                      <Marker
                         draggable={true}

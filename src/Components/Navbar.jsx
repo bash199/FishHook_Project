@@ -57,7 +57,7 @@ const Navbar = () => {
          <span></span>
          <span></span> 
           {/* <!-- logo --> */}
-         <Link to="/" className="menu-logo nav-title">
+         <Link to="/" className="menu-logo nav-title colors">
             {/* <img
                src="https://img.icons8.com/cute-clipart/64/null/shoes.png"
                alt="img"
@@ -65,7 +65,7 @@ const Navbar = () => {
             FishHook
          </Link>
          {/* <!-- menu items --> */}
-         <div className="menu">
+         <div className="menu  colors">
             <ul>
                <li>
                   <Link to={"/allcatches"}>All Catches</Link>

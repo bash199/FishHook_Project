@@ -1,19 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 const Div = styled.div`
-/* linear-gradient(180deg,rgba(61,61,61,.42),#1d1d1d),url(https://www.leisurepro.com/blog/wp-content/uploads/2019/05/shutterstock_651678592-1366x800@2x.jpg) */
-   background: url('https://www.scuba.com/blog/wp-content/uploads/2019/05/shutterstock_651678592-1366x800@2x.jpg') center center / cover no-repeat ;
-   background-image: linear-gradient(180deg,rgba(61,61,61,0.42));
+   background: url("landingback.jpg")
+      center center / cover no-repeat;
+   background-image: linear-gradient(180deg, rgba(61, 61, 61, 0.42));
    width: 100%;
-   height: 100vh;
+   min-height: 100vh;
+   position: relative;
+   /* .card-text1{
+    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden ;
+    text-overflow: ellipsis;
+} */
+
+`;
+export const Overlay = styled.div`
+   position: absolute;
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, 0.4);
+   z-index: 0;
 `;
 const LandingPage = () => {
    return (
       <Div>
-         
-
+         <Overlay />
       </Div>
-      );
+   );
 };
 
 export default LandingPage;

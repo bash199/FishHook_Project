@@ -7,6 +7,7 @@ import styled from "styled-components";
 import CustomPopup from "./CustomPopup";
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
+
 const MapDiv = styled.div`
    width: calc(100% - 20px);
    height: 90vh;
@@ -52,21 +53,22 @@ const AllCatchMap = ({listOfMarkers}) => {
       };
    }, []);
 
-   const goToMarker = (clickedMarker) => {
-      setViewport({
-          ...viewport,
-          longitude: clickedMarker.lng,
-          latitude: clickedMarker.lat,
-          zoom: 10,
-          tranistionDuration: 5000,
-          transitionInterpolator: new ReactMap.flyTo({ speed: 1.2 }),
-      })
-  }
+   //    const goToMarker = (clickedMarker) => {
+   //       setViewport({
+   //           ...viewport,
+   //           longitude: clickedMarker.lng,
+   //           latitude: clickedMarker.lat,
+   //           zoom: 10,
+   //           tranistionDuration: 5000,
+   //           transitionInterpolator: new ReactMap.flyTo({ speed: 1.2 }),
+   //       })
+   //   }
    return (
       <MapDiv className="allChatchesMap">
          <ReactMap
             mapboxAccessToken={ReactMap.mapboxAccessToken}
-            mapStyle="mapbox://styles/mapbox/outdoors-v12?optimize=true"
+            // mapStyle="mapbox://styles/mapbox/outdoors-v12?optimize=true"
+            mapStyle="mapbox://styles/mapbox/navigation-night-v1"
             style={{borderRadius: "10px"}}
             initialViewState={viewport}
             onMove={(viewport) => {
@@ -80,7 +82,7 @@ const AllCatchMap = ({listOfMarkers}) => {
                listOfMarkers.map((spot, i) => {
                   return (
                      <Marker
-                     style={{cursor:"pointer"}}
+                        style={{cursor: "pointer"}}
                         key={spot.id}
                         latitude={spot.lat}
                         longitude={spot.lng}

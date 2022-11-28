@@ -3,17 +3,18 @@ import {useNavigate} from "react-router-dom";
 import MarkerImg from "./marker.png";
 import ReactMap, {Marker} from "react-map-gl";
 import {useCRUD} from "../../hooks/UseCRUD";
-import styled from 'styled-components'
+import styled from "styled-components";
 ReactMap.mapboxAccessToken =
    "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
 
 export const NewCatchContainer = styled.div`
    height: 100%;
-   background-color: #B4C9AF;
+   position: relative;
+   background-image: url("back2.jpg");
    display: flex;
    justify-content: center;
-   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+   color: white;
+   font-family: Arial, Helvetica, sans-serif;
 `;
 export const Form = styled.form`
    width: calc(100% - 20px);
@@ -21,9 +22,11 @@ export const Form = styled.form`
    display: flex;
    flex-direction: column;
    align-items: center;
+   z-index: 2;
 `;
 export const InputDiv = styled.div`
    width: 90%;
+   font-weight: 400;
    display: flex;
    flex-direction: column;
    & > small {
@@ -74,6 +77,16 @@ export const Input = styled.input`
       border-color: #33333344;
    }
 `;
+export const Overlay2 = styled.div`
+   position: absolute;
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, 0.4);
+   z-index: 0;
+`;
+
 
 const NewCatch = () => {
    const navigate = useNavigate();
@@ -91,6 +104,7 @@ const NewCatch = () => {
       description: "",
       fish: "",
       locationName: "",
+      caughtBy: "",
       weight: "",
       lat: 33.01305774552368,
       lng: 35.08856616177496,
@@ -102,7 +116,7 @@ const NewCatch = () => {
       event.preventDefault();
       create(currCatch);
       // setTimeout(() => {
-         setRedirect(true);
+      setRedirect(true);
       // }, 500);
    };
    const handleInputChange = (event) => {
@@ -116,8 +130,9 @@ const NewCatch = () => {
    }
    return (
       <NewCatchContainer>
+         <Overlay2 />
          <Form onSubmit={handleFormSubmit}>
-            <h1>Add a new catch!</h1>
+            {/* <h1>Add a new catch!</h1> */}
             <InputDiv>
                <Label htmlFor="titleInput">Title</Label>
                <small>required</small>
@@ -153,6 +168,7 @@ const NewCatch = () => {
             </InputDiv>
             <InputDiv>
                <Label htmlFor="weightInput">Fish Weight:</Label>
+               <small>(In Kg)</small>
                <Input
                   value={currCatch.weight}
                   id="weightInput"
@@ -162,7 +178,19 @@ const NewCatch = () => {
                   onChange={handleInputChange}
                />
             </InputDiv>
-            <h2>Drag the pin to get your coordinates!</h2>
+            <InputDiv>
+               <Label htmlFor="caughtByInput">Caught By:</Label>
+               <Input
+                  value={currCatch.caughtBy}
+                  id="caughtByInput"
+                  name="caughtBy"
+                  type="text"
+                  onChange={handleInputChange}
+               />
+            </InputDiv>
+            <h2 style={{marginTop: "10px"}}>
+               Drag the pin to get your coordinates...
+            </h2>
             <MapBox>
                <ReactMap
                   style={{borderRadius: "10px"}}
@@ -171,7 +199,8 @@ const NewCatch = () => {
                   onMove={(viewport) => {
                      setViewport(viewport);
                   }}
-                  mapStyle="mapbox://styles/mapbox/outdoors-v12"
+                  // mapStyle="mapbox://styles/mapbox/outdoors-v12"
+                  mapStyle="mapbox://styles/mapbox/navigation-night-v1"
                >
                   <Marker
                      draggable={true}
@@ -237,7 +266,7 @@ const NewCatch = () => {
                />
             </InputDiv>
             <button type="submit" className="btn btn-primary">
-               Submit Post
+               Add Catch
             </button>
          </Form>
       </NewCatchContainer>
