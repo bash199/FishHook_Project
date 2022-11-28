@@ -102,6 +102,7 @@ export const H2 = styled.h2`
 export const Btn = styled.button`
    width: 100px;
    height: 30px;
+   color: white;
    font-size: 1rem;
    cursor: pointer;
    background: rgba(255, 255, 255, 0.05);
