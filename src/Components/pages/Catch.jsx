@@ -13,7 +13,7 @@ const CatchDiv = styled.div`
 `;
 const Catch = () => {
    const {catchId} = useParams();
-   const {readById, deleteCatch, state, error, isLoading} = useCRUD();
+   const {readById, deleteCatch, state, isLoading} = useCRUD();
    useEffect(() => {
       readById(catchId);
       // eslint-disable-next-line
@@ -21,7 +21,6 @@ const Catch = () => {
    const handleDeleteClick = () => {
       deleteCatch(state.id);
    };
-   {/* {error && <h1>{error.message}</h1>} */}
 
    return (
       <CatchDiv>
