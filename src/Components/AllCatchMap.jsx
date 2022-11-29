@@ -6,7 +6,7 @@ import "./app.css";
 import styled from "styled-components";
 import CustomPopup from "./CustomPopup";
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
+// import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 const token =
    "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
 const MapDiv = styled.div`
@@ -62,7 +62,6 @@ const AllCatchMap = ({listOfMarkers}) => {
             // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             mapboxAccessToken={token}
             mapStyle="mapbox://styles/mapbox/navigation-night-v1"
-            workerClass={MapboxWorker}
             style={{borderRadius: "10px"}}
             initialViewState={viewport}
             onMove={(viewport) => {
