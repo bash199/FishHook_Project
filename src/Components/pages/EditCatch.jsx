@@ -117,7 +117,8 @@ const EditCatch = () => {
                   <ReactMap
                      style={{borderRadius: "10px"}}
                      initialViewState={viewport}
-                     mapboxAccessToken={ReactMap.mapboxAccessToken}
+                     mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                     // mapboxAccessToken={ReactMap.mapboxAccessToken}
                      onMove={(viewport) => {
                         setViewport(viewport);
                      }}

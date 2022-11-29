@@ -6,8 +6,6 @@ import "./app.css";
 import styled from "styled-components";
 import CustomPopup from "./CustomPopup";
 
-ReactMap.mapboxAccessToken ="pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
-
 const MapDiv = styled.div`
    width: calc(100% - 20px);
    height: 90vh;
@@ -56,10 +54,8 @@ const AllCatchMap = ({listOfMarkers}) => {
 
    return (
       <MapDiv className="allChatchesMap">
-         {console.log(process.env.REACT_APP_MAPBOX_TOKEN)}
          <ReactMap
-            // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            mapboxAccessToken={ReactMap.mapboxAccessToken}
+            mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             mapStyle="mapbox://styles/mapbox/navigation-night-v1"
             style={{borderRadius: "10px"}}
             initialViewState={viewport}
