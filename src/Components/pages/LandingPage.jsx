@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
-   background: url("landingback.jpg")
+   background: url("/images/landingback.jpg")
       center center / cover no-repeat;
    background-image: linear-gradient(180deg, rgba(61, 61, 61, 0.42));
    width: 100%;

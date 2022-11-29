@@ -8,7 +8,6 @@ const useCRUD = () => {
    const create = async (obj) => {
       setIsLoading(true);
       try {
-         console.log(obj);
          const {data} = await axios.post(baseUrl, obj);
          setState(data);
       } catch (err) {

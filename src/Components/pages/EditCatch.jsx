@@ -2,10 +2,9 @@ import React, {useEffect, useState} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import ReactMap, {Marker} from "react-map-gl";
 import {useCRUD} from "../../hooks/UseCRUD";
-import MarkerImg from "./marker.png";
 import Spinner from "../Spinner";
 import {
-   NewCatchContainer,
+   EditCatchContainer,
    Form,
    InputDiv,
    InputDiv2,
@@ -17,12 +16,12 @@ import {
    Overlay2,
    H2,
    Btn,
-} from "./NewCatch";
+   BtnBox
+} from "../style/NewCatchUI";
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-// ReactMap.workerClass =
-   // require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
-   const token ="pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw"
+
+const token =
+   "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
 const EditCatch = () => {
    const {catchId} = useParams();
    const navigate = useNavigate();
@@ -43,14 +42,16 @@ const EditCatch = () => {
          return {...prev, [event.target.name]: event.target.value};
       });
    };
-
+   const handleBackClick = () => {
+      navigate(`/allcatches/${catchId}`);
+   };
    useEffect(() => {
       readById(catchId);
       // eslint-disable-next-line
    }, []);
 
    return (
-      <NewCatchContainer>
+      <EditCatchContainer>
          <Overlay2 />
          {!state && <Spinner />}
          {state && (
@@ -137,7 +138,7 @@ const EditCatch = () => {
                         latitude={state.lat}
                         longitude={state.lng}
                      >
-                        <Img src={MarkerImg} alt="fish" />
+                        <Img src={"/images/marker.png"} alt="fish" />
                      </Marker>
                   </ReactMap>
                </MapBox>
@@ -187,12 +188,17 @@ const EditCatch = () => {
                      onChange={handleInputChange}
                   />
                </InputDiv>
-               <Btn type="submit" className="btn btn-primary">
-                  Confirm
-               </Btn>
+               <BtnBox>
+            <Btn type="submit" className="btn btn-primary">
+               Edit Catch
+            </Btn>
+            <Btn onClick={handleBackClick}>
+               BACK
+            </Btn>
+            </BtnBox>
             </Form>
          )}
-      </NewCatchContainer>
+      </EditCatchContainer>
    );
 };
 

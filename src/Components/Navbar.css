@@ -12,12 +12,14 @@
    -moz-box-shadow: 0px 10px 20px 0px rgba(62, 66, 66, 0.22);
    box-shadow: 0px 10px 20px 0px rgba(62, 66, 66, 0.22);
    background-color: #ffffff;
+   
 }
 .menu {
    position: relative;
    width: 100%;
    display: flex;
    justify-content: flex-end;
+   
 }
 .menu-logo {
    line-height: 0;
@@ -34,6 +36,7 @@
    text-decoration: none;
    color: #232323;
    transition: color 0.3s ease;
+   
 }
 
 .menu-container a:hover {
@@ -41,6 +44,7 @@
 }
 
 .menu-container input {
+   
    display: block;
    width: 35px;
    height: 25px;
@@ -94,6 +98,7 @@
 
 .menu ul {
    list-style: none;
+   
 }
 
 .menu li {
@@ -124,25 +129,26 @@
    }
 
    .menu {
+      overflow-inline: hidden;
       position: absolute;
       box-sizing: border-box;
       width: 300px;
       right: -300px;
       top: 0;
-      margin: -20px;
+      border-radius: 0 0 0 3px ;
+      /* margin: -20px; */
       padding: 75px 50px 50px;
       background: rgba(255, 255, 255, 0.911);
       justify-content: center;
       -webkit-font-smoothing: antialiased;
       /* to stop flickering of text in safari */
-      overflow: hidden;
       transform-origin: 0% 0%;
-      transform: translateX(0%);
+      transform: translateX(0);
       transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
    }
 
    .menu-container input:checked ~ .menu {
-      transform: translateX(-100%);
+      transform: translateX(-300px);
    }
 }
 .colors {

@@ -1,38 +1,12 @@
 import AllCatchMap from "../AllCatchMap";
-import styled from "styled-components";
 import Card from "../Card";
 import {useFetch} from "../../hooks/UseFetch";
 import {useEffect} from "react";
 import Spinner from "../Spinner";
 import {Overlay} from "./LandingPage";
-
-const AllCatchesDiv = styled.div`
-   width: 100%;
-   min-height: 100vh;
-   background-image: url("back.jpg");
-   background-repeat: no-repeat;
-   background-position: center;
-   background-size: cover;
-   position: relative;
-   display: flex;
-   flex-direction: row;
-   @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
-      flex-wrap: wrap;
-   }
-`;
-const CardsBox = styled.div`
-   color: white;
-   text-align: center;
-`;
-const H1 = styled.h1`
-   margin:10px ;
-   font-weight: 200;
-`;
+import {AllCatchesDiv, CardsBox, H1} from "../style/AllCatchesUI";
 
 const AllCatches = () => {
-
    const [readData, listOfMarkers, isLoading] = useFetch();
 
    useEffect(() => {

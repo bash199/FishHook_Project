@@ -3,9 +3,9 @@ import Navbar from "./Navbar";
 import Routes from "./routes/Routes";
 function App() {
    return (
-      <div className="app">
+      <div>
          <Navbar />
-         <Routes  />
+         <Routes />
       </div>
    );
 }

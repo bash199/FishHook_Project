@@ -11,24 +11,24 @@ const PopUpDiv = styled.div`
 const PopUpImage = styled.img`
    width: 220px;
    height: 165px;
-
 `;
 
 const CustomPopup = () => {
-
    const {selectedCatch, setSelectedCatch} = useContext(popupCtx);
    const closePop = () => {
       setSelectedCatch(null);
    };
-   
+
    return (
-      <Popup style={{cursor: "pointer"}}
+      <Popup
+         style={{cursor: "pointer"}}
          latitude={selectedCatch.lat}
          longitude={selectedCatch.lng}
          onClose={closePop}
          closeButton={true}
          closeOnClick={false}
       >
+         
          <PopUpDiv style={{padding: "0px"}}>
             <PopUpImage
                src={selectedCatch.image}
@@ -37,7 +37,9 @@ const CustomPopup = () => {
             />
             <section className="markerPopup-info">
                <h5>{selectedCatch.title}</h5>
-               <Link to={`/allcatches/${selectedCatch.id}`}>Read More</Link>
+               <Link className="links" to={`/allcatches/${selectedCatch.id}`}>
+                  Read More
+               </Link>
             </section>
          </PopUpDiv>
       </Popup>

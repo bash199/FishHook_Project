@@ -1,36 +1,11 @@
-import "./app.css";
-import MarkerImg from "../Components/pages/marker.png";
+import "./app.css"; 
 import ReactMapGL, {Marker} from "react-map-gl";
 import {useState, createContext, useEffect} from "react";
 import "./app.css";
-import styled from "styled-components";
 import CustomPopup from "./CustomPopup";
-// eslint-disable-next-line import/no-webpack-loader-syntax
-// import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
+import {MapDiv,Img,InfoViewPort} from "./style/AllCatchMapUI"
 const token =
    "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
-const MapDiv = styled.div`
-   width: calc(100% - 20px);
-   height: 90vh;
-   margin: 10px;
-`;
-const Img = styled.img`
-   width: 25px;
-   height: 25px;
-`;
-const InfoViewPort = styled.pre`
-   display: block;
-   position: relative;
-   float: left;
-   margin: 0px auto;
-   width: 30%;
-   padding: 10px;
-   border: none;
-   border-radius: 3px;
-   font-size: 12px;
-   text-align: center;
-   color: #222;
-`;
 
 export const popupCtx = createContext();
 const AllCatchMap = ({listOfMarkers}) => {
@@ -57,7 +32,6 @@ const AllCatchMap = ({listOfMarkers}) => {
 
    return (
       <MapDiv className="allChatchesMap">
-         {/* {console.log(MapboxWorker())} */}
          <ReactMapGL
             // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             mapboxAccessToken={token}
@@ -81,7 +55,7 @@ const AllCatchMap = ({listOfMarkers}) => {
                         longitude={spot.lng}
                      >
                         <Img
-                           src={MarkerImg}
+                           src={"/images/marker.png"}
                            alt="fish"
                            onClick={() => setSelectedCatch(spot)}
                         />
