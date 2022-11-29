@@ -1,11 +1,14 @@
 import "./app.css";
 import MarkerImg from "../Components/pages/marker.png";
-import ReactMap, {Marker} from "react-map-gl";
+import ReactMapGL, {Marker} from "react-map-gl";
 import {useState, createContext, useEffect} from "react";
 import "./app.css";
 import styled from "styled-components";
 import CustomPopup from "./CustomPopup";
-
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
+const token =
+   "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
 const MapDiv = styled.div`
    width: calc(100% - 20px);
    height: 90vh;
@@ -54,9 +57,12 @@ const AllCatchMap = ({listOfMarkers}) => {
 
    return (
       <MapDiv className="allChatchesMap">
-         <ReactMap
-            mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+         {/* {console.log(MapboxWorker())} */}
+         <ReactMapGL
+            // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            mapboxAccessToken={token}
             mapStyle="mapbox://styles/mapbox/navigation-night-v1"
+            workerClass={MapboxWorker}
             style={{borderRadius: "10px"}}
             initialViewState={viewport}
             onMove={(viewport) => {
@@ -67,7 +73,7 @@ const AllCatchMap = ({listOfMarkers}) => {
             }}
          >
             {listOfMarkers &&
-               listOfMarkers.map((spot, i) => {
+               listOfMarkers.map((spot) => {
                   return (
                      <Marker
                         style={{cursor: "pointer"}}
@@ -89,7 +95,7 @@ const AllCatchMap = ({listOfMarkers}) => {
             <popupCtx.Provider value={{selectedCatch, setSelectedCatch}}>
                {selectedCatch && <CustomPopup />}
             </popupCtx.Provider>
-         </ReactMap>
+         </ReactMapGL>
       </MapDiv>
    );
 };

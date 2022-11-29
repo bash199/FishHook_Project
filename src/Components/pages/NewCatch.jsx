@@ -4,9 +4,9 @@ import MarkerImg from "./marker.png";
 import ReactMap, {Marker} from "react-map-gl";
 import {useCRUD} from "../../hooks/UseCRUD";
 import styled from "styled-components";
-ReactMap.mapboxAccessToken =
-   "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
-
+// eslint-disable-next-line import/no-webpack-loader-syntax
+// ReactMap.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+const token ="pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw"
 export const NewCatchContainer = styled.div`
    height: 100%;
    position: relative;
@@ -220,8 +220,8 @@ const NewCatch = () => {
                <ReactMap
                   style={{borderRadius: "10px"}}
                   initialViewState={viewport}
-                  mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                  // mapboxAccessToken={ReactMap.mapboxAccessToken}
+                  mapboxAccessToken={token}
+                  // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                   onMove={(viewport) => {
                      setViewport(viewport);
                   }}

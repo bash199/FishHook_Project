@@ -10,8 +10,6 @@
     "axios": "^1.2.0",
     "bootstrap": "^5.2.3",
     "dotenv": "^16.0.3",
-    "env": "^0.0.2",
-    "env-cmd": "^10.1.0",
     "mapbox-gl": "^2.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,7 +17,8 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "worker-loader": "^3.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,6 +36,10 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie 11",
+      "not chrome < 51",
+      "not safari < 10",
+      "not android < 51",
       "not op_mini all"
     ],
     "development": [

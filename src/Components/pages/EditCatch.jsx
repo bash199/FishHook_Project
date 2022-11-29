@@ -19,11 +19,11 @@ import {
    Btn,
 } from "./NewCatch";
 
-ReactMap.mapboxAccessToken =
-   "pk.eyJ1IjoiYmFzaDE5OSIsImEiOiJjbGF3YnpxODAwZTh5M3ptcHV0dmZzZzB5In0.WjmYm8krzXdzyufBd6hSDA";
-
+// eslint-disable-next-line import/no-webpack-loader-syntax
+// ReactMap.workerClass =
+   // require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+   const token ="pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw"
 const EditCatch = () => {
-   
    const {catchId} = useParams();
    const navigate = useNavigate();
    const {readById, update, setState, state} = useCRUD();
@@ -36,14 +36,14 @@ const EditCatch = () => {
    const handleFormSubmit = (event) => {
       event.preventDefault();
       update(state);
-      navigate("/allcatches")
+      navigate("/allcatches");
    };
    const handleInputChange = (event) => {
       setState((prev) => {
          return {...prev, [event.target.name]: event.target.value};
       });
    };
-   
+
    useEffect(() => {
       readById(catchId);
       // eslint-disable-next-line
@@ -117,13 +117,11 @@ const EditCatch = () => {
                   <ReactMap
                      style={{borderRadius: "10px"}}
                      initialViewState={viewport}
-                     mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                     // mapboxAccessToken={ReactMap.mapboxAccessToken}
+                     mapboxAccessToken={token}
                      onMove={(viewport) => {
                         setViewport(viewport);
                      }}
-                     // mapStyle="mapbox://styles/mapbox/outdoors-v12?optimize=true"
-                     mapStyle="mapbox://styles/mapbox/navigation-night-v1?optimize=true"
+                     mapStyle="mapbox://styles/mapbox/navigation-night-v1"
                   >
                      <Marker
                         draggable={true}
