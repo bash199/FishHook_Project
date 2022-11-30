@@ -40,7 +40,7 @@ export const Box = styled.div`
 export const H1 = styled.h1`
    color: white;
    font-size: 3rem;
-   font-family: "Courier New", Courier, monospace;
+   font-family: "Montserrat", sans-serif;
    margin-left: 15px;
    @media screen and (max-width: 500px) {
       font-size: 2.5rem;
@@ -52,7 +52,7 @@ export const H1 = styled.h1`
 `;
 export const Title = styled.h1`
    color: white;
-   font-family: "Courier New", Courier, monospace;
+   font-family: "Montserrat", sans-serif;
    font-size: 1.3rem;
    margin: 10px 0 10px 15px;
    @media screen and (max-width: 500px) {
@@ -64,7 +64,8 @@ export const Title = styled.h1`
    }
 `;
 export const Btn = styled.button`
-   width: 90px;
+   font-family: "Montserrat", sans-serif;
+   width: 95px;
    height: 25px;
    color: white;
    font-size: 1rem;
@@ -88,7 +89,7 @@ export const Btn = styled.button`
 
 export const WelcomeTilte = styled.h1`
    color: white;
-   font-family: "Courier New", Courier, monospace;
+   font-family: "Montserrat", sans-serif;
    font-size: 1.6rem;
    margin: 10px 0 10px 15px;
    @media screen and (max-width: 500px) {

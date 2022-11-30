@@ -30,14 +30,14 @@ export const InnerDiv = styled.div`
    }
    @media (max-width: 400px) {
       width: 280px;
-      height: 880px;
+      height: 700px;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
    }
    @media (max-width: 300px) and (min-height: 550px) {
       width: 280px;
-      height: 700px;
+      height: 645px;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
@@ -88,13 +88,13 @@ export const AboutDiv = styled.div`
 export const H3 = styled.h3`
    font-size: 1.6rem;
    font-weight: 500;
-   font-family: "Courier New", Courier, monospace;
+   font-family: "Montserrat", sans-serif;
    margin: 5px 0 2px 0;
 `;
 export const H4 = styled.h4`
    font-size: 1.4rem;
    font-weight: 300;
-   font-family: "Courier New", Courier, monospace;
+   font-family: "Montserrat", sans-serif;
    margin: 5px 0 2px 0;
    @media screen and (max-width: 768px) {
       font-size: 1.2rem;
@@ -146,6 +146,7 @@ export const Btn = styled.button`
    backdrop-filter: blur(0px);
    -webkit-backdrop-filter: blur(0);
    border-radius: 3px;
+   font-family: 'Montserrat', sans-serif;
    border: 1px solid rgba(255, 255, 255, 0.18);
    margin: 5px;
    &:hover {

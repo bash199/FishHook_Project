@@ -1,6 +1,14 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import {Div,Overlay,Box,Btn,H1,Title,WelcomeTilte} from "../style/LandingPageUI"
+import {
+   Div,
+   Overlay,
+   Box,
+   Btn,
+   H1,
+   Title,
+   WelcomeTilte,
+} from "../style/LandingPageUI";
 
 const LandingPage = () => {
    const navigate = useNavigate();

@@ -16,9 +16,8 @@ import {
    Overlay2,
    H2,
    Btn,
-   BtnBox
+   BtnBox,
 } from "../style/NewCatchUI";
-
 
 const token =
    "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
@@ -56,7 +55,6 @@ const EditCatch = () => {
          {!state && <Spinner />}
          {state && (
             <Form onSubmit={handleFormSubmit}>
-               <h1>submit a new post!</h1>
                <InputDiv>
                   <Label htmlFor="titleInput">Title</Label>
                   <small>required</small>
@@ -189,13 +187,11 @@ const EditCatch = () => {
                   />
                </InputDiv>
                <BtnBox>
-            <Btn type="submit" className="btn btn-primary">
-               Edit Catch
-            </Btn>
-            <Btn onClick={handleBackClick}>
-               BACK
-            </Btn>
-            </BtnBox>
+                  <Btn type="submit" className="btn btn-primary">
+                     SAVE
+                  </Btn>
+                  <Btn onClick={handleBackClick}>BACK</Btn>
+               </BtnBox>
             </Form>
          )}
       </EditCatchContainer>

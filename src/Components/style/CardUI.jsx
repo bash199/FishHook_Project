@@ -43,7 +43,7 @@ export const AboutDiv = styled.div`
 export const H4 = styled.h4`
    font-size: 1.2rem;
    font-weight: 500;
-   font-family: "Courier New", Courier, monospace;
+   font-family: "Montserrat", sans-serif;
    margin: 5px 0 2px 0;
    &:hover {
       text-shadow: rgba(62, 66, 66, 0.8) 0px 0px 2px;

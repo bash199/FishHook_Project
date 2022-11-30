@@ -6,9 +6,9 @@ export const NewCatchContainer = styled.div`
    display: flex;
    justify-content: center;
    color: white;
-   font-family: Arial, Helvetica, sans-serif;
 `;
 export const Form = styled.form`
+   font-family: "Montserrat", sans-serif;
    width: calc(100% - 20px);
    height: 100%;
    display: flex;
@@ -60,6 +60,7 @@ export const InputRowDiv = styled.div`
    }
 `;
 export const Input = styled.input`
+   font-family: "Montserrat", sans-serif;
    line-height: 28px;
    border: 2px solid transparent;
    border-bottom-color: #777;
@@ -96,6 +97,7 @@ export const Btn = styled.button`
    height: 30px;
    color: white;
    font-size: 1rem;
+   font-family: "Montserrat", sans-serif;
    cursor: pointer;
    background: rgba(255, 255, 255, 0.05);
    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
