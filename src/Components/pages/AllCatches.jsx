@@ -3,7 +3,7 @@ import Card from "../Card";
 import {useFetch} from "../../hooks/UseFetch";
 import {useEffect} from "react";
 import Spinner from "../Spinner";
-import {Overlay} from "./LandingPage";
+import {Overlay} from "../style/LandingPageUI";
 import {AllCatchesDiv, CardsBox, H1} from "../style/AllCatchesUI";
 
 const AllCatches = () => {

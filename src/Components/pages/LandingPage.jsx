@@ -1,27 +1,25 @@
 import React from "react";
-import styled from "styled-components";
-
-export const Div = styled.div`
-   background: url("/images/landingback.jpg") center center / cover no-repeat;
-   background-image: linear-gradient(180deg, rgba(61, 61, 61, 0.42));
-   width: 100%;
-   min-height: 96vh;
-   position: relative;
-`;
-export const Overlay = styled.div`
-   position: absolute;
-   top: 0;
-   right: 0;
-   left: 0;
-   bottom: 0;
-   background-color: rgba(0, 0, 0, 0.4);
-   z-index: 0;
-`;
-
+import {useNavigate} from "react-router-dom";
+import {Div,Overlay,Box,Btn,H1,Title,WelcomeTilte} from "../style/LandingPageUI"
 
 const LandingPage = () => {
+   const navigate = useNavigate();
+   const handleClick = () => {
+      navigate("/allcatches");
+   };
    return (
-      <Div>
+      <Div className="landingPage">
+         <Box>
+            <WelcomeTilte> Welcome to FishHook!</WelcomeTilte>
+            <Title>What is FishHook?</Title>
+            <div>
+               <H1>
+                  FishHook is a social platform to share and explore new
+                  fruitful fishing areas based on a real-time user activities.
+               </H1>
+            </div>
+            <Btn onClick={handleClick}>Get Fishin'</Btn>
+         </Box>
          <Overlay />
       </Div>
    );
