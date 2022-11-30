@@ -15,8 +15,9 @@ import {
    Overlay2,
    H2,
    Btn,
-   BtnBox
+   BtnBox,
 } from "../style/NewCatchUI";
+
 const token =
    "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
 
@@ -194,12 +195,10 @@ const NewCatch = () => {
                />
             </InputDiv>
             <BtnBox>
-            <Btn type="submit" className="btn btn-primary">
-               Add Catch
-            </Btn>
-            <Btn onClick={handleBackClick}>
-               BACK
-            </Btn>
+               <Btn type="submit" className="btn btn-primary">
+                  Add Catch
+               </Btn>
+               <Btn onClick={handleBackClick}>BACK</Btn>
             </BtnBox>
          </Form>
       </NewCatchContainer>

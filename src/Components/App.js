@@ -1,12 +1,13 @@
-import "./app.css";
 import Navbar from "./Navbar";
 import Routes from "./routes/Routes";
+import {AppBox} from "./style/AppBoxUI";
+
 function App() {
    return (
-      <div>
+      <AppBox>
          <Navbar />
          <Routes />
-      </div>
+      </AppBox>
    );
 }
 

@@ -18,7 +18,7 @@ const Card = ({fish: {image, title, id, locationName, fish}}) => {
             <Image src={image} alt={title} />
          </ImageDiv>
          <AboutDiv>
-            <Link className="links " to={`/allcatches/${id}`}>
+            <Link style={{ textDecoration: 'none',color: '#222'}} className="links " to={`/allcatches/${id}`}>
                <H4>{title}</H4>
             </Link>
             <Hr />

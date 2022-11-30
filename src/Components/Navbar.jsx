@@ -1,9 +1,8 @@
-import "./Navbar.css";
+import "./style/Navbar.css";
 import {Link} from "react-router-dom";
 
 const Navbar = () => {
    return (
-
       <nav className="menu-container">
          {/* <!-- burger menu --> */}
          <input type="checkbox" aria-label="Toggle menu" />
@@ -18,9 +17,8 @@ const Navbar = () => {
          <div className="menu  colors">
             <ul>
                <li>
-                  <Link to={"/allcatches"}>All Catches</Link>
+                  <Link to="/allcatches">All Catches</Link>
                </li>
-
                <li>
                   <Link to="/newcatch">New Catch</Link>
                </li>

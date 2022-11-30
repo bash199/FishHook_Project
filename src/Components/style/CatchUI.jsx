@@ -35,6 +35,13 @@ export const InnerDiv = styled.div`
       align-items: center;
       justify-content: space-around;
    }
+   @media (max-width: 300px) and (min-height: 550px) {
+      width: 280px;
+      height: 700px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+   }
 `;
 export const ImageDiv = styled.div`
    width: 40%;
@@ -49,6 +56,9 @@ export const ImageDiv = styled.div`
    @media (max-width: 400px) {
       width: 92%;
       height: fit-content;
+   }
+   @media (max-width: 300px) and (min-height: 550px) {
+      height: 200px;
    }
 `;
 export const Image = styled.img`

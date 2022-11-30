@@ -1,9 +1,7 @@
-import "./app.css"; 
 import ReactMapGL, {Marker} from "react-map-gl";
 import {useState, createContext, useEffect} from "react";
-import "./app.css";
 import CustomPopup from "./CustomPopup";
-import {MapDiv,Img,InfoViewPort} from "./style/AllCatchMapUI"
+import {MapDiv, Img, InfoViewPort} from "./style/AllCatchMapUI";
 const token =
    "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
 
