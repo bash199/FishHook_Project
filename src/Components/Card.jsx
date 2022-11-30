@@ -11,14 +11,18 @@ import {
    LocationName,
 } from "./style/CardUI";
 
-const Card = ({fish: {image, title, id, locationName, fish}}) => {
+const Card = ({fish: {image, title, id, locationName, fish, caughtBy}}) => {
    return (
       <CardDiv>
          <ImageDiv>
             <Image src={image} alt={title} />
          </ImageDiv>
          <AboutDiv>
-            <Link style={{ textDecoration: 'none',color: '#222'}} className="links " to={`/allcatches/${id}`}>
+            <Link
+               style={{textDecoration: "none", color: "#222"}}
+               className="links "
+               to={`/allcatches/${id}`}
+            >
                <H4>{title}</H4>
             </Link>
             <Hr />
@@ -27,6 +31,9 @@ const Card = ({fish: {image, title, id, locationName, fish}}) => {
             </FishDiv>
             <LocationName>
                <p>Caught At: {locationName}</p>
+            </LocationName>
+            <LocationName>
+               <p>Caught By: {caughtBy}</p>
             </LocationName>
          </AboutDiv>
       </CardDiv>

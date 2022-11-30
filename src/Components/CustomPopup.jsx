@@ -2,16 +2,16 @@ import {useContext} from "react";
 import {Popup} from "react-map-gl";
 import {Link} from "react-router-dom";
 import {popupCtx} from "./AllCatchMap";
-import styled from "styled-components";
-
-const PopUpDiv = styled.div`
-   width: 100%;
-   cursor: default;
-`;
-const PopUpImage = styled.img`
-   width: 220px;
-   height: 165px;
-`;
+import "./style/popup.css";
+import {
+   PopUpDiv,
+   PopUpImage,
+   Section,
+   BtnBox,
+   Btn,
+   H3,
+   H4,
+} from "./style/CustomPopupUI";
 
 const CustomPopup = () => {
    const {selectedCatch, setSelectedCatch} = useContext(popupCtx);
@@ -21,26 +21,32 @@ const CustomPopup = () => {
 
    return (
       <Popup
-         style={{cursor: "pointer"}}
+         style={{cursor: "pointer", padding: "0"}}
          latitude={selectedCatch.lat}
          longitude={selectedCatch.lng}
          onClose={closePop}
          closeButton={true}
          closeOnClick={false}
       >
-         
          <PopUpDiv style={{padding: "0px"}}>
             <PopUpImage
                src={selectedCatch.image}
                className="popupPost-img"
                alt={selectedCatch.title}
             />
-            <section className="markerPopup-info">
-               <h5>{selectedCatch.title}</h5>
-               <Link className="links" to={`/allcatches/${selectedCatch.id}`}>
-                  Read More
+            <Section className="markerPopup-info">
+               <H3>{selectedCatch.title}</H3>
+               <H4>Fish Caught : {selectedCatch.fish}</H4>
+               <H4>Caught By : {selectedCatch.caughtBy}</H4>
+               <Link
+                  style={{textDecoration: "none", color: "#222"}}
+                  to={`/allcatches/${selectedCatch.id}`}
+               >
+                  <BtnBox>
+                     <Btn>Read More</Btn>
+                  </BtnBox>
                </Link>
-            </section>
+            </Section>
          </PopUpDiv>
       </Popup>
    );
