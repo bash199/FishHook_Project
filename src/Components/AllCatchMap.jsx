@@ -2,8 +2,7 @@ import ReactMapGL, {Marker} from "react-map-gl";
 import {useState, createContext, useEffect} from "react";
 import CustomPopup from "./CustomPopup";
 import {MapDiv, Img, InfoViewPort} from "./style/AllCatchMapUI";
-const token =
-   "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
+
 
 export const popupCtx = createContext();
 const AllCatchMap = ({listOfMarkers}) => {
@@ -31,8 +30,8 @@ const AllCatchMap = ({listOfMarkers}) => {
    return (
       <MapDiv className="allChatchesMap">
          <ReactMapGL
-            // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            mapboxAccessToken={token}
+            mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            // mapboxAccessToken={token}
             mapStyle="mapbox://styles/mapbox/navigation-night-v1"
             style={{borderRadius: "10px"}}
             initialViewState={viewport}
