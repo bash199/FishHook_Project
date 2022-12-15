@@ -18,8 +18,6 @@ import {
    BtnBox,
 } from "../style/NewCatchUI";
 
-const token =
-   "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
 
 const NewCatch = () => {
    const navigate = useNavigate();
@@ -124,12 +122,11 @@ const NewCatch = () => {
                <ReactMap
                   style={{borderRadius: "3px"}}
                   initialViewState={viewport}
-                  mapboxAccessToken={token}
-                  // mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                  mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                   onMove={(viewport) => {
                      setViewport(viewport);
                   }}
-                  mapStyle="mapbox://styles/mapbox/navigation-night-v1"
+                  mapStyle={process.env.REACT_APP_MAPBOX_STYLE}
                >
                   <Marker
                      draggable={true}

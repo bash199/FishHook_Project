@@ -19,8 +19,7 @@ import {
    BtnBox,
 } from "../style/NewCatchUI";
 
-const token =
-   "pk.eyJ1IjoiZnJhbmtpMTYiLCJhIjoiY2xiMjNuMHlxMDBraDN2cHhscTNlbmc0cyJ9.0HeIdQyWwkDhKzrLR7wYFw";
+
 const EditCatch = () => {
    const {catchId} = useParams();
    const navigate = useNavigate();
@@ -116,11 +115,11 @@ const EditCatch = () => {
                   <ReactMap
                      style={{borderRadius: "10px"}}
                      initialViewState={viewport}
-                     mapboxAccessToken={token}
+                     mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                      onMove={(viewport) => {
                         setViewport(viewport);
                      }}
-                     mapStyle="mapbox://styles/mapbox/navigation-night-v1"
+                     mapStyle={process.env.REACT_APP_MAPBOX_STYLE}
                   >
                      <Marker
                         draggable={true}
