@@ -40,7 +40,7 @@ const CustomPopup = () => {
                <H4>Caught By : {selectedCatch.caughtBy}</H4>
                <Link
                   style={{textDecoration: "none", color: "#222"}}
-                  to={`/allcatches/${selectedCatch.id}`}
+                  to={`/allcatches/${selectedCatch._id}`}
                >
                   <BtnBox>
                      <Btn>Read More</Btn>

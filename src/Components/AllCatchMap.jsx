@@ -45,7 +45,7 @@ const AllCatchMap = ({listOfMarkers}) => {
                   return (
                      <Marker
                         style={{cursor: "pointer"}}
-                        key={spot.id}
+                        key={spot._id}
                         latitude={spot.lat}
                         longitude={spot.lng}
                      >

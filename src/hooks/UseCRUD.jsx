@@ -1,6 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
-const baseUrl = "https://6377843f5c477765121fffdd.mockapi.io/spot";
+const baseUrl =
+   "https://bashapi.onrender.com/api/doc/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2I4NDdlN2M2NWExMGM4NDc5OWQ5ZTEiLCJpYXQiOjE2NzMyNjkxNTl9.1GsJwbjXly3d7rrWpRf0iHzLpKPcNXozdsW0wbNLbiQ/spot";
 const useCRUD = () => {
    const [state, setState] = useState(null);
    const [error, setError] = useState(null);
@@ -45,6 +46,15 @@ const useCRUD = () => {
       }
       setIsLoading(false);
    };
-   return {create, readById, update, deleteCatch,setState, state, error, isLoading};
+   return {
+      create,
+      readById,
+      update,
+      deleteCatch,
+      setState,
+      state,
+      error,
+      isLoading,
+   };
 };
 export {useCRUD};

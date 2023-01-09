@@ -18,17 +18,17 @@ const AllCatches = () => {
       <AllCatchesDiv>
          <Overlay />
          {isLoading && <Spinner />}
-         {listOfMarkers && <AllCatchMap listOfMarkers={listOfMarkers} />}
+         {!isLoading && <AllCatchMap listOfMarkers={listOfMarkers} />}
          {listOfMarkers && (
             <CardsBox>
                <H1>Recent Catches:</H1>
-               {listOfMarkers &&
+               {!isLoading &&
                   listOfMarkers
                      .map((fish) => {
-                        return <Card key={fish.id} fish={fish}></Card>;
+                        return <Card key={fish._id} fish={fish}></Card>;
                      })
                      .reverse()}
-            </CardsBox>
+            </CardsBox>    
          )}
       </AllCatchesDiv>
    );

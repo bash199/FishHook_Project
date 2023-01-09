@@ -24,7 +24,7 @@ const Catch = () => {
    const navigate = useNavigate();
    const {readById, deleteCatch, state, isLoading} = useCRUD();
    const handleDeleteClick = () => {
-      deleteCatch(state.id);
+      deleteCatch(state._id);
       navigate("/allcatches");
    };
    const handleEditClick = () => {
